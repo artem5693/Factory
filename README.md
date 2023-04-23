@@ -59,3 +59,25 @@ git push origin master
 
 5. Launch installed application
  ![](info/com.oculus.shellenv-20230415-023206.jpg)
+
+## Task 4. Add npm packager with webpack
+
+```shell
+npm init
+npm install three @fortawesome/fontawesome-free
+npm install --save-dev workbox-webpack-plugin copy-webpack-plugin css-loader html-webpack-plugin style-loader webpack webpack-cli webpack-dev-server
+```
+
+Add scripts to the `package.json`
+
+```json lines
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "build-dev": "webpack --config webpack.config.js --mode development",
+    "start": "npx serve dist",
+    "start-https": "npx http-server -S key.pem -C cert.pem dist",
+    "dev-server": "npx webpack serve --mode development",
+    "dev-server-https": "npx webpack serve --https --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```

@@ -1,10 +1,10 @@
 
 import * as THREE from 'three';
-import { GLTFLoader } from '../threejs/examples/jsm/loaders/GLTFLoader.js';
-import { RGBELoader } from '../threejs/examples/jsm/loaders/RGBELoader.js';
-import { LoadingBar } from '../js/LoadingBar.js';
-import { VRButton } from '../js/VRButton.js';
-import { XRControllerModelFactory } from '../threejs/examples/jsm/webxr/XRControllerModelFactory.js';
+import { LoadingBar } from './utils/LoadingBar.js';
+import { VRButton } from './utils/VRButton.js';
+import {XRControllerModelFactory} from "three/addons/webxr/XRControllerModelFactory";
+import {RGBELoader} from "three/addons/loaders/RGBELoader";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 
 class Game{
 	constructor(){
