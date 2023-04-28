@@ -7,6 +7,10 @@
 //         console.error(error);
 //     });
 // }
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
 import {Game} from "./Game";
 
 if ('serviceWorker' in navigator) {

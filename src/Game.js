@@ -1,10 +1,12 @@
-
 import * as THREE from 'three';
 import { LoadingBar } from './utils/LoadingBar.js';
 import { VRButton } from './utils/VRButton.js';
 import {XRControllerModelFactory} from "three/addons/webxr/XRControllerModelFactory";
 import {RGBELoader} from "three/addons/loaders/RGBELoader";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+// import assets
+import factoryGlb from "./assets/factory.glb"
+import factoryHdr from "./images/factory.hdr"
 
 class Game{
 	constructor(){
@@ -95,38 +97,38 @@ class Game{
     }
     
     setEnvironment(){
-        const loader = new RGBELoader().setPath('');
+        const loader = new RGBELoader();
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         pmremGenerator.compileEquirectangularShader();
         
 		this.loadingBar.visible = true;
 
-        loader.load( 'images/factory.hdr', 
-		texture => {
-          const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
-          pmremGenerator.dispose();
+		loader.load(factoryHdr,
+			texture => {
+				const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+				pmremGenerator.dispose();
 
-          this.scene.environment = envMap;
+				this.scene.environment = envMap;
 
-		  this.loadingBar.visible = !this.loadingBar.loaded;
-        }, 
-		xhr => {
-			this.loadingBar.update( 'envmap', xhr.loaded, xhr.total );
-		},
-		err => {
-            console.error( err.message );
-        } );
+				this.loadingBar.visible = false;
+			},
+			xhr => {
+				this.loadingBar.update('envmap', xhr.loaded, xhr.total);
+			},
+			err => {
+				console.error(err.message);
+			});
     }
 
     loadEnvironment(){
-    	const loader = new GLTFLoader( ).setPath(this.assetsPath);
+    	const loader = new GLTFLoader( )
         
         this.loadingBar.visible = true;
 		
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'factory.glb',
+			factoryGlb,
 			// called when the resource is loaded
 			gltf => {
 
@@ -180,7 +182,7 @@ class Game{
 					});
 				}
 
-				this.loadingBar.visible = !this.loadingBar.loaded;
+				this.loadingBar.visible = false;
 
 				this.setupXR();
 			},
@@ -295,7 +297,7 @@ class Game{
 
 		if (this.fans !== undefined){
             this.fans.forEach(fan => {
-                fan.rotateY(dt); 
+                fan.rotateY(dt * 1);
             });
         }
 

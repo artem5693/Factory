@@ -65,7 +65,9 @@ git push origin master
 ```shell
 npm init
 npm install three @fortawesome/fontawesome-free
-npm install --save-dev workbox-webpack-plugin copy-webpack-plugin css-loader html-webpack-plugin style-loader webpack webpack-cli webpack-dev-server
+npm install --save-dev copy-webpack-plugin css-loader html-webpack-plugin style-loader webpack webpack-cli webpack-dev-server
+npm install --save-dev workbox-webpack-plugin
+npm install --save-dev webpack-pwa-manifest
 ```
 
 Add scripts to the `package.json`
